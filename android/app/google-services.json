@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "177376408422",
+    "project_id": "cipher-schools-38851",
+    "storage_bucket": "cipher-schools-38851.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177376408422:android:93537a68c83ae73d2f4ea7",
+        "android_client_info": {
+          "package_name": "com.example.cipher_schools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177376408422-vi52j5gf50mscqlmmg1acco2gq651cf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cipher_schools",
+            "certificate_hash": "b3506a04d7420ef0a27ea47fba2f11a97f19b4b7"
+          }
+        },
+        {
+          "client_id": "177376408422-85a3cqjfq3h9qe1kp6hdo0dsg88i4ufu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJSQsg5fqEEng0KRQd2JPvsaolKJdCv-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177376408422-85a3cqjfq3h9qe1kp6hdo0dsg88i4ufu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
