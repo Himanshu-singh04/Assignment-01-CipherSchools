@@ -52,9 +52,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          primaryColor: Colors.blueAccent,
-          scaffoldBackgroundColor: Colors.white),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: _is_signed_in ? home_page() : login_page(),
     );
