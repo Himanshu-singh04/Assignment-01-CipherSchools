@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.17
+  list_wheel_scroll_view_nls: ^0.0.3
 
 dev_dependencies:
 

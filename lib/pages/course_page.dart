@@ -10,11 +10,11 @@ import '../auth/auth_service.dart';
 import '../widgets/widgets.dart';
 import 'login_page.dart';
 
-class home_page extends StatefulWidget {
-  const home_page({super.key});
+class course_page extends StatefulWidget {
+  const course_page({super.key});
 
   @override
-  State<home_page> createState() => _home_pageState();
+  State<course_page> createState() => _course_pageState();
 }
 
 bool iconbool = false;
@@ -35,7 +35,7 @@ String drop_value = "Popular";
 ThemeData lighttheme = ThemeData.light();
 ThemeData darktheme = ThemeData.dark();
 
-class _home_pageState extends State<home_page> {
+class _course_pageState extends State<course_page> {
   auth_service authservice = auth_service();
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class _home_pageState extends State<home_page> {
         bottomNavigationBar: BottomNavigationBar(
             fixedColor: Color.fromARGB(255, 255, 255, 255),
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            currentIndex: 0,
+            currentIndex: 1,
             items: [
               BottomNavigationBarItem(
                   icon: Icon(
