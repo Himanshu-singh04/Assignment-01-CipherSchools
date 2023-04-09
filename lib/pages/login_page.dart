@@ -1,3 +1,4 @@
+import 'package:cipher_schools/pages/course_page.dart';
 import 'package:cipher_schools/pages/register_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,7 +57,7 @@ class _login_pageState extends State<login_page> {
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w300)),
                       Image.asset(
-                        "assets/login_page.png",
+                        "assets/logo.png",
                         fit: BoxFit.fill,
                       ),
                       TextFormField(
@@ -159,7 +160,7 @@ class _login_pageState extends State<login_page> {
           await Helper_functions.save_user_log_in_status(true);
           await Helper_functions.save_useremail(email);
           await Helper_functions.save_username(snapshot.docs[0]['fullname']);
-          next_screen_replace(context, home_page());
+          next_screen_replace(context, course_page());
         } else {
           setState(() {
             snack_bar(context, Colors.blue, value);

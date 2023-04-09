@@ -1,3 +1,5 @@
+import 'package:cipher_schools/pages/home_page.dart';
+import 'package:cipher_schools/pages/profile_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +10,7 @@ import 'package:list_wheel_scroll_view_nls/list_wheel_scroll_view_nls.dart';
 
 import '../auth/auth_service.dart';
 import '../widgets/widgets.dart';
+import 'course_page.dart';
 import 'login_page.dart';
 
 class home_page extends StatefulWidget {
@@ -34,9 +37,18 @@ List<DropdownMenuItem<String>> get dropdownItems {
 String drop_value = "Popular";
 ThemeData lighttheme = ThemeData.light();
 ThemeData darktheme = ThemeData.dark();
+int current_index = 0;
+// final screens = [home_page(), course_page()];
 
 class _home_pageState extends State<home_page> {
   auth_service authservice = auth_service();
+  PageController pageController = PageController();
+  // void ontapped(int index) {
+  //   setState(() {
+  //     current_index = index;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -117,39 +129,69 @@ class _home_pageState extends State<home_page> {
         ]),
 
         bottomNavigationBar: BottomNavigationBar(
-            fixedColor: Color.fromARGB(255, 255, 255, 255),
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            currentIndex: 0,
-            items: [
-              BottomNavigationBarItem(
+          type: BottomNavigationBarType.fixed,
+          fixedColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Color.fromARGB(255, 40, 42, 57),
+          currentIndex: current_index,
+          unselectedFontSize: 12,
+          selectedFontSize: 12,
+          // onTap: (index) => setState(() => current_index = index),
+          items: [
+            BottomNavigationBarItem(
+                icon: IconButton(
                   icon: Icon(
                     CupertinoIcons.home,
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
-                  label: 'Home',
-                  backgroundColor: Color.fromARGB(255, 40, 42, 57)),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    CupertinoIcons.book,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  label: 'Courses',
-                  backgroundColor: Color.fromARGB(255, 40, 42, 57)),
-              BottomNavigationBarItem(
+                  onPressed: () {
+                    setState(() {
+                      current_index = 0;
+                      next_screen_replace(context, home_page());
+                    });
+                  },
+                ),
+                label: 'Home',
+                backgroundColor: Color.fromARGB(255, 40, 42, 57)),
+            BottomNavigationBarItem(
+                icon: IconButton(
+                  icon: Icon(Icons.book),
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  onPressed: () {
+                    setState(() {
+                      current_index = 1;
+                      next_screen_replace(context, course_page());
+                    });
+                  },
+                ),
+                label: 'Courses',
+                backgroundColor: Color.fromARGB(255, 40, 42, 57)),
+            BottomNavigationBarItem(
+                icon: IconButton(
                   icon: Icon(
                     CupertinoIcons.compass,
                     color: Colors.white,
                   ),
-                  label: 'Trending',
-                  backgroundColor: Color.fromARGB(255, 40, 42, 57)),
-              BottomNavigationBarItem(
+                  onPressed: () {},
+                ),
+                label: 'Trending',
+                backgroundColor: Color.fromARGB(255, 40, 42, 57)),
+            BottomNavigationBarItem(
+                icon: IconButton(
                   icon: Icon(
                     Icons.account_circle,
                     color: Colors.white,
                   ),
-                  label: 'Profile',
-                  backgroundColor: Color.fromARGB(255, 40, 42, 57))
-            ]),
+                  onPressed: () {
+                    setState(() {
+                      current_index = 3;
+                      next_screen_replace(context, profile_page());
+                    });
+                  },
+                ),
+                label: 'Profile',
+                backgroundColor: Color.fromARGB(255, 40, 42, 57))
+          ],
+        ),
         // // body: Center(
         //     child: ElevatedButton(
         //   child: Text('sign out'),
@@ -217,6 +259,7 @@ class _home_pageState extends State<home_page> {
     if (selected_value is String) {
       setState(() {
         drop_value = selected_value;
+        next_screen_replace(context, home_page());
       });
     }
   }
