@@ -33,6 +33,14 @@ List<DropdownMenuItem<String>> get dropdownItems {
   return menuItems;
 }
 
+List<DropdownMenuItem<String>> get dropdownItem {
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("Popular"), value: "Popular"),
+    DropdownMenuItem(child: Text("Latest"), value: "Latest"),
+  ];
+  return menuItems;
+}
+
 String drop_value = "Popular";
 ThemeData lighttheme = ThemeData.light();
 ThemeData darktheme = ThemeData.dark();
@@ -100,45 +108,88 @@ class _course_pageState extends State<course_page> {
             ),
           ),
         ),
-        body: Column(children: [
-          Container(
-            padding: EdgeInsets.only(top: 10),
-            height: 230,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [flutter(), python(), mock(), web()],
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(children: [
-            Text(
-              "Recommended Courses",
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(children: [
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              height: 230,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [flutter(), python(), mock(), web()],
+              ),
             ),
             SizedBox(
-              width: 60,
+              height: 10,
             ),
-            DropdownButton(
-                items: dropdownItems, value: drop_value, onChanged: drop_down),
-          ]),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  height: 300,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [rc_1(), rc_2(), rc_3(), rc_4(), rc_5(), rc_6()],
+            Row(children: [
+              Text(
+                "   Recommended Courses",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                width: 40,
+              ),
+              DropdownButton(
+                  items: dropdownItems,
+                  value: drop_value,
+                  onChanged: drop_down),
+            ]),
+            SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 300,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        rc_1(),
+                        rc_2(),
+                        rc_3(),
+                        rc_4(),
+                        rc_5(),
+                        rc_6()
+                      ],
+                    ),
                   ),
-                )
-              ],
-            ),
-          )
-        ]),
+                  Row(children: [
+                    Text(
+                      "   Latest Videos",
+                      textAlign: TextAlign.left,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 130,
+                    ),
+                    DropdownButton(
+                        items: dropdownItem,
+                        value: drop_value,
+                        onChanged: drop_down),
+                  ]),
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        height: 300,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            lv_1(),
+                            lv_2(),
+                            lv_3(),
+                            lv_4(),
+                            lv_5(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ]))
+          ]),
+        ),
 
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

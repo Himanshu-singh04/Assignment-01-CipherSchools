@@ -53,12 +53,18 @@ class _login_pageState extends State<login_page> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text("Login to find out new friends",
+                      Text("Login to find out new Courses",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w300)),
+                      SizedBox(
+                        height: 50,
+                      ),
                       Image.asset(
                         "assets/logo.png",
                         fit: BoxFit.fill,
+                      ),
+                      SizedBox(
+                        height: 50,
                       ),
                       TextFormField(
                         decoration: text_input_decoration.copyWith(
@@ -160,7 +166,7 @@ class _login_pageState extends State<login_page> {
           await Helper_functions.save_user_log_in_status(true);
           await Helper_functions.save_useremail(email);
           await Helper_functions.save_username(snapshot.docs[0]['fullname']);
-          next_screen_replace(context, course_page());
+          next_screen_replace(context, home_page());
         } else {
           setState(() {
             snack_bar(context, Colors.blue, value);

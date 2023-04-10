@@ -62,71 +62,220 @@ class _home_pageState extends State<home_page> {
             fit: BoxFit.fill,
           ),
           leadingWidth: 140,
-          title: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
+        ),
+        endDrawer: Container(
+          color: Colors.black,
+          child: Drawer(
+            child: ListView(
+              // Important: Remove any padding from the ListView.
+              padding: EdgeInsets.zero,
               children: [
-                TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      CupertinoIcons.compass,
-                      color: Colors.white,
-                      size: 15,
+                DrawerHeader(
+                  decoration: BoxDecoration(color: Colors.grey),
+                  child: Column(children: [
+                    Image.asset("assets/white_logo.png"),
+                    SizedBox(
+                      height: 15,
                     ),
-                    label:
-                        Text('Browse', style: TextStyle(color: Colors.white))),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        iconbool = !iconbool;
-                      });
-                    },
-                    icon: Icon(
-                      iconbool ? icon_dark : icon_light,
-                      size: 20,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      CupertinoIcons.bell_solid,
-                      size: 20,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.search,
-                      size: 20,
-                    ))
+                    Text(
+                      "Cipher_School presents to you....",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ]),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.home,
+                  ),
+                  title: Text('Home'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.book,
+                  ),
+                  title: const Text('Courses'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(
+                    CupertinoIcons.compass,
+                  ),
+                  title: const Text('Trending'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(CupertinoIcons.person_add),
+                  title: const Text('Following'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(
+                    CupertinoIcons.person_3_fill,
+                  ),
+                  title: const Text('Discord'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(
+                    CupertinoIcons.briefcase,
+                  ),
+                  title: const Text('Creators Access'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.feedback,
+                  ),
+                  title: const Text('Send Feedback'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(Icons.arrow_back),
+                  title: Text("logout"),
+
+                  onTap: () async {
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("logout"),
+                            content: Text("are you sure you want to logout ??"),
+                            actions: [
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.cancel,
+                                    color: Colors.red,
+                                  )),
+                              IconButton(
+                                  onPressed: () async {
+                                    await authservice.sign_out();
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) => login_page()),
+                                        (route) => false);
+                                  },
+                                  icon: Icon(
+                                    Icons.done,
+                                    color: Colors.green,
+                                  ))
+                            ],
+                          );
+                        });
+                  },
+                  // ListTile(
+                  //   leading: Icon(
+                  //     Icons.arrow_back,
+                  //   ),
+                  //   title: const Text('LogOut'),
+                  //   onTap: () {
+                  //     authservice.sign_out();
+                  //     next_screen(context, login_page());
+                  //   },
+                  // ),
+                )
               ],
             ),
           ),
         ),
-        body: Column(children: [
-          Container(
-            padding: EdgeInsets.only(top: 10),
-            height: 230,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [flutter(), python(), mock(), web()],
-            ),
+
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 60,
+              ),
+              Row(
+                children: [
+                  Text("    Welcome to",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 38,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                    " the",
+                    style: TextStyle(
+                        color: Colors.amber,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 38),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "  Future",
+                    style: TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber),
+                  ),
+                  Text(
+                    " of Learning !",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 38),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                "Start Learning by best creators for",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "absolutely Free !",
+                style: TextStyle(
+                    color: Colors.amberAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Image.asset("assets/home.png"),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.amber),
+                  onPressed: () {
+                    next_screen_replace(context, course_page());
+                  },
+                  child: Text("Start Learning Now")),
+              Container(
+                padding: EdgeInsets.only(top: 50, bottom: 50),
+                height: 300,
+                child: ListWheelScrollViewX(
+                    physics: FixedExtentScrollPhysics(),
+                    itemExtent: 250,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      InkWell(child: Image.asset("assets/rb_1.png")),
+                      InkWell(child: Image.asset("assets/rb_2.png")),
+                      InkWell(child: Image.asset("assets/rb_3.png")),
+                      InkWell(child: Image.asset("assets/rb_4.png")),
+                    ]),
+              ),
+            ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(children: [
-            Text(
-              "Recommended Courses",
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: 60,
-            ),
-            DropdownButton(
-                items: dropdownItems, value: drop_value, onChanged: drop_down),
-          ]),
-          SingleChildScrollView()
-        ]),
+        ),
 
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

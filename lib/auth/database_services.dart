@@ -23,4 +23,6 @@ class database_service {
         await user_collection.where("email", isEqualTo: email).get();
     return snapshot;
   }
+
+  get_user_groups() {}
 }

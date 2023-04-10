@@ -24,4 +24,8 @@ class Helper_functions {
     SharedPreferences sf = await SharedPreferences.getInstance();
     return sf.getBool(user_logged_in_key);
   }
+
+  static get_user_name_from_SF() {}
+
+  static get_user_email_from_SF() {}
 }

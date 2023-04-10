@@ -53,9 +53,15 @@ class _register_pageState extends State<register_page> {
                       Text("Create new account to explore more!!!",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w300)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Image.asset(
-                        "assets/login_page.png",
+                        "assets/logo.png",
                         fit: BoxFit.fill,
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
                       TextFormField(
                         decoration: text_input_decoration.copyWith(
